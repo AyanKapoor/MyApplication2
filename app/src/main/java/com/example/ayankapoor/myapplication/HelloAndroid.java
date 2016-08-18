@@ -32,6 +32,13 @@ public class HelloAndroid extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            // Restore value of members from saved state
+            score = savedInstanceState.getInt(STATE_SCORE);
+            number = savedInstanceState.getInt(STATE_LEVEL);
+        }
+
         setContentView(R.layout.activity_hello_android);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
