@@ -26,6 +26,8 @@ public class HelloAndroid extends AppCompatActivity {
     TextView text_number;
     TextView textView_score;
     int score = 0;int number;
+    static final String STATE_SCORE = "playerScore";
+    static final String STATE_LEVEL = "playerLevel";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class HelloAndroid extends AppCompatActivity {
         textView_score =(TextView)findViewById((R.id.textView_score));
 
 
-        int number = getRandomNumberInRange(2,100);
+        int number = getRandomNumberInRange(2,1000);
         text_number.setText(Integer.toString(number));
         textView_score.setText(Integer.toString(score));
 
@@ -60,7 +62,7 @@ public class HelloAndroid extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                int number = getRandomNumberInRange(2,100);
+                int number = getRandomNumberInRange(2,1000);
                 text_number.setText(Integer.toString(number));
 
             }
@@ -86,7 +88,7 @@ public class HelloAndroid extends AppCompatActivity {
 
 
                 Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
-                int number = getRandomNumberInRange(2,100);
+                int number = getRandomNumberInRange(2,1000);
                 text_number.setText(Integer.toString(number));
                 textView_score.setText(Integer.toString(score));
 
@@ -113,13 +115,31 @@ public class HelloAndroid extends AppCompatActivity {
 
 
                 Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
-                int number = getRandomNumberInRange(2,100);
+                int number = getRandomNumberInRange(2,1000);
                 text_number.setText(Integer.toString(number));
                 textView_score.setText(Integer.toString(score));
             }
         });
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the user's current game state
+        savedInstanceState.putInt(STATE_SCORE, score);
+        savedInstanceState.putInt(STATE_LEVEL, number);
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore state members from saved instance
+        score = savedInstanceState.getInt(STATE_SCORE);
+        number = savedInstanceState.getInt(STATE_LEVEL);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
