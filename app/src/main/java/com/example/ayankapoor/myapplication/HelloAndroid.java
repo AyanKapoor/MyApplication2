@@ -25,7 +25,7 @@ public class HelloAndroid extends AppCompatActivity {
     Button button_next;
     TextView text_number;
     TextView textView_score;
-    int score = 0;int number;
+    int score = 0;int number=0;
     static final String STATE_SCORE = "playerScore";
     static final String STATE_LEVEL = "playerLevel";
 
@@ -59,7 +59,8 @@ public class HelloAndroid extends AppCompatActivity {
         textView_score =(TextView)findViewById((R.id.textView_score));
 
 
-        int number = getRandomNumberInRange(2,1000);
+        if(number==0)
+            number = getRandomNumberInRange(2,1000);
         text_number.setText(Integer.toString(number));
         textView_score.setText(Integer.toString(score));
 
@@ -69,7 +70,7 @@ public class HelloAndroid extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                int number = getRandomNumberInRange(2,1000);
+                 number = getRandomNumberInRange(2,1000);
                 text_number.setText(Integer.toString(number));
 
             }
@@ -95,7 +96,7 @@ public class HelloAndroid extends AppCompatActivity {
 
 
                 Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
-                int number = getRandomNumberInRange(2,1000);
+                number = getRandomNumberInRange(2,1000);
                 text_number.setText(Integer.toString(number));
                 textView_score.setText(Integer.toString(score));
 
@@ -122,7 +123,7 @@ public class HelloAndroid extends AppCompatActivity {
 
 
                 Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
-                int number = getRandomNumberInRange(2,1000);
+                number = getRandomNumberInRange(2,1000);
                 text_number.setText(Integer.toString(number));
                 textView_score.setText(Integer.toString(score));
             }
